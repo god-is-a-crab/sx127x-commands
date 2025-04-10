@@ -1,0 +1,16 @@
+[package]
+name = "sx127x-commands"
+version = "0.1.0"
+edition = "2024"
+authors = ["Jingwei Ni <ni.jingwei.2210@gmail.com>"]
+description = "Register bitfields and commands for the SX1276-7-8-9."
+keywords = ["lora", "semtech", "sx127x"]
+categories = ["embedded", "no-std", "hardware-support"]
+license = "MIT"
+repository = "https://github.com/god-is-a-crab/sx127x-commands"
+homepage = "https://github.com/god-is-a-crab/sx127x-commands"
+readme = "README.md"
+exclude = [".github"]
+
+[dependencies]
+bitfield-struct = "0.10.1"
