@@ -17,6 +17,29 @@ impl<T: const Register> ReadSingle<T> {
     }
 }
 
+pub struct WriteFifo<const N: usize>([u8; N]);
+
+impl<const N: usize> WriteFifo<N> {
+    pub const fn bytes(&self) -> [u8; N + 1] {
+        let mut bytes = [0; N + 1];
+        bytes[0] = 0b1000_0000;
+        let mut i = 1;
+        while i < N + 1 {
+            bytes[i] = self.0[i - 1];
+            i += 1;
+        }
+        bytes
+    }
+}
+
+pub struct ReadFifo<const N: usize>(PhantomData<[u8; N]>);
+
+impl<const N: usize> ReadFifo<N> {
+    pub const fn bytes() -> [u8; N + 1] {
+        [0; N + 1]
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -33,5 +56,17 @@ mod tests {
 
         const WRITE_SINGLE: WriteSingle<registers::RegOpMode> = WriteSingle(OP_MODE);
         assert_eq!(WRITE_SINGLE.bytes(), [0x01 | 0b1000_0000, 0b1000_1011],);
+    }
+
+    #[test]
+    fn test_write_fifo() {
+        const WRITE_FIFO: WriteFifo<3> = WriteFifo([0x31, 0x92, 0x53]);
+        assert_eq!(WRITE_FIFO.bytes(), [0b1000_0000, 0x31, 0x92, 0x53],);
+    }
+
+    #[test]
+    fn test_read_fifo() {
+        const READ_FIFO_BYTES: [u8; 4] = ReadFifo::<3>::bytes();
+        assert_eq!(READ_FIFO_BYTES, [0, 0, 0, 0],);
     }
 }
