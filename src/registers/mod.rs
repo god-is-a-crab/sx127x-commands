@@ -33,7 +33,7 @@ impl LongRangeMode {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-1
-        unsafe { std::mem::transmute(bits & 1) }
+        unsafe { core::mem::transmute(bits & 1) }
     }
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -54,7 +54,7 @@ impl Mode {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-7
-        unsafe { std::mem::transmute(bits & 0b111) }
+        unsafe { core::mem::transmute(bits & 0b111) }
     }
 }
 
@@ -97,7 +97,7 @@ impl PaSelect {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-1
-        unsafe { std::mem::transmute(bits & 1) }
+        unsafe { core::mem::transmute(bits & 1) }
     }
 }
 
@@ -134,7 +134,7 @@ impl PaRamp {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-15
-        unsafe { std::mem::transmute(bits & 0b1111) }
+        unsafe { core::mem::transmute(bits & 0b1111) }
     }
 }
 
@@ -177,7 +177,7 @@ impl LnaGain {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-7
-        unsafe { std::mem::transmute(bits & 0b111) }
+        unsafe { core::mem::transmute(bits & 0b111) }
     }
 }
 

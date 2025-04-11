@@ -174,7 +174,7 @@ impl Bw {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-15
-        unsafe { std::mem::transmute(bits & 0b1111) }
+        unsafe { core::mem::transmute(bits & 0b1111) }
     }
 }
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -195,7 +195,7 @@ impl CodingRate {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-7
-        unsafe { std::mem::transmute(bits & 0b111) }
+        unsafe { core::mem::transmute(bits & 0b111) }
     }
 }
 
@@ -336,7 +336,7 @@ impl DetectionOptimize {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-7
-        unsafe { std::mem::transmute(bits & 0b111) }
+        unsafe { core::mem::transmute(bits & 0b111) }
     }
 }
 
@@ -389,7 +389,7 @@ impl DetectionThreshold {
     }
     const fn from_bits(bits: u8) -> Self {
         // SAFETY: The result is guaranteed to be in the range of 0-15
-        unsafe { std::mem::transmute(bits & 0b1111) }
+        unsafe { core::mem::transmute(bits & 0b1111) }
     }
 }
 
