@@ -1,7 +1,7 @@
 use crate::registers::Register;
 use core::marker::PhantomData;
 
-pub struct WriteSingle<T: Register>(T);
+pub struct WriteSingle<T: Register>(pub T);
 
 impl<T: const Register> WriteSingle<T> {
     pub const fn bytes(&self) -> [u8; 2] {
@@ -17,7 +17,7 @@ impl<T: const Register> ReadSingle<T> {
     }
 }
 
-pub struct WriteFifo<const N: usize>([u8; N]);
+pub struct WriteFifo<const N: usize>(pub [u8; N]);
 
 impl<const N: usize> WriteFifo<N> {
     pub const fn bytes(&self) -> [u8; N + 1] {
